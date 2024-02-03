@@ -1,0 +1,30 @@
+<DOC type = html>
+    <html lang = "en">
+   <!-- title of page -->
+   
+       <head>
+           <title> Home page</title>
+       </head>
+       <div class = "container">
+           <img src="C:\Users\noahk\OneDrive\Github website\HTML_Website_Project\Screenshot 2023-12-18 110244.png" 
+               height="150px" width = "150px" style = "background-color: rgb(255, 255, 255); 
+            border: 5px solid #eef604; margin:5px">
+
+            <h1 style="font-size: 80px; font-family: 'Times New Romans'; background-color: 
+           rgb(102, 178, 255); border: 5px solid #eef604;"> Noah Kuskye's Website</h1>
+       </div>
+       <style>
+         .container{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+         }
+       </style>
+       <body style="background-color: rgb(102, 178, 255)">
+            <button></button>
+            <br>
+            <br>
+            <button></button> 
+       </body>
+   
+    </html>
