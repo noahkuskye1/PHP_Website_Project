@@ -7,33 +7,62 @@
   
   Description: The First Page that the user interacts with
 -->
-<DOC type = html>
+<!DOCTYPE = html>
     <html lang = "en">
-   <!-- title of page -->
-   
+   <!-- title of page -->   
        <head>
            <title> Home page</title>
        </head>
+       <link rel="stylesheet" href="styles.css">
+       <style>
+        .container{
+           display: flex;
+           flex-direction: row;
+           align-items: center;
+        }
+       </style>
        <div class = "container">
            <img src="C:\Users\noahk\OneDrive\Github website\HTML_Website_Project\Screenshot 2023-12-18 110244.png" 
                height="150px" width = "150px" style = "background-color: rgb(255, 255, 255); 
             border: 5px solid #eef604; margin:5px">
 
-            <h1 style="font-size: 80px; font-family: 'Times New Romans'; background-color: 
-           rgb(102, 178, 255); border: 5px solid #eef604;"> Noah Kuskye's Website</h1>
+            <header style="font-size: 80px; font-family: 'Times New Romans'; background-color: 
+           rgb(102, 178, 255); border: 5px solid #eef604;"> Noah Kuskye's Website</header>
        </div>
-       <style>
-         .container{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-         }
-       </style>
-       <body style="background-color: rgb(102, 178, 255)">
-            <button a href = "FirstPage.html">Page 1</button>
-            <br>
-            <br>
-            <button> </button> 
+
+       <alt style = "background-color: rgb(255, 255, 255); 
+       border: 5px solid #eef604; margin:5px; width: 150px;">Picture of Yellow Husky</alt>
+       <body>
+          <h1>Welcome!</h1>
+          <p> This website is a project and a prototype that represent my work</p>
+          
+          <div class="flex-parent text-center">
+             <div class = "button">
+                <a href = "FirstPage.html">
+                  <button >Page 1</button>
+                </a>
+              </div>
+
+              <div class= "space"> </div>
+
+              <div class ="button">
+              <a href = "SecondPage.html">
+                <button>Page 2</button>
+              </a> 
+              </div>
+
+            <div class= "space"> </div>
+            
+            <a href = "ThirdPage.html">
+              <button style="background-color:rgb(51, 153, 255); font-family:Gill Sans; 
+              font-size: 40px; border: 5px solid #eef604;">Page 3</button>
+            </a> 
+            <div class= "space"> </div>
+            <a href = "FourthPage.html">
+              <button style="background-color:rgb(51, 153, 255); font-family:Gill Sans; 
+              font-size: 40px; border: 5px solid #eef604;">Page 4</button>
+            </a> 
+            </div>
        </body>
    
     </html>
