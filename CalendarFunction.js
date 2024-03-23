@@ -42,7 +42,6 @@ selectYear.addEventListener('input', (event)=> {
 selectMonth.addEventListener('change', jump);
 
 showCalendar(currentMonth,currentYear);
-showEvents();
 
 function showCalendar(month, year) { 
 
@@ -98,21 +97,18 @@ function nextMonth() {
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
     currentMonth = (currentMonth + 1) % 12;
     showCalendar(currentMonth, currentYear);
-    showEvents();
 }
 
 function previousMonth() {
     currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
     currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
     showCalendar(currentMonth, currentYear);
-    showEvents();
 }
 
 function jump() {
     currentYear = parseInt(selectYear.value);
     currentMonth = parseInt(selectMonth.value);
     showCalendar(currentMonth, currentYear);
-    showEvents();
 }
 
 
