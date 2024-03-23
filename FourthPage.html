@@ -9,7 +9,7 @@
         <meta charset="UTF-8">
     </head>
     <!--Header with logo and name of site-->
-    <body>   
+    <body onload="startTime()">   
       <div class="container">
         <div class="header">
           <div class="image-center">
@@ -36,6 +36,36 @@
           padding:15px;text-align:center;">
           <h2><b>Video & Extras Page</b></h2>
         </div>
+        <div style="background-color:#ffffff;
+          padding:15px;text-align:center;">
+           <div id="txt"></div>
+
+           <script>
+           function startTime() {
+             const today = new Date();
+             let h = today.getHours();
+             let m = today.getMinutes();
+             let s = today.getSeconds();
+             let session = "AM";
+             m = checkTime(m);
+             s = checkTime(s);
+             if (h==0){
+              h=12;
+             }
+             if (h > 12){
+              h=h-12;
+              session = "PM";
+             }
+             document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s + " " + session;
+             setTimeout(startTime, 1000);
+           }
+           
+           function checkTime(i) {
+             if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+             return i;
+           }
+           </script>
+         </div>
         
         <!--Navagation bar-->
         <div class="topnav">
@@ -47,6 +77,7 @@
                 <a class = "active" href="FourthPage.html">
                   Fourth Page
                 </a> 
+                <a href="FifthPage.html">Fifth Page</a> 
             </nav>
         </div>
         
@@ -120,6 +151,22 @@
             </svg>          
           </div>
         </div>
+        <br>
+        <button onclick="displayDate()">The time is?</button>
+        <script>
+          function displayDate() {
+          document.getElementById("demo").innerHTML = Date();
+          }
+        </script>
+        <h2 onclick="changeText(this)">Click on this text!</h2>
+
+        <script>
+        function changeText(id) {
+          id.innerHTML = "You got me!";
+        }
+        </script>
+
+        <p id="demo"></p>
 
         <!--footer-->
         <div class="footer">
