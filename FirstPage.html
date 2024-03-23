@@ -93,7 +93,6 @@
                 <a href="noahkuskye@gmail.com">
                   noahkuskye@gmail.com
                 </a>
-              </p>
             </aside>
           </div>
         <!-- paragraph the informs about the site's purpose -->
@@ -117,7 +116,7 @@
           function validateForm() {
           let x = document.forms["myForm"]["sport"]["movie"]["number"].value;
             if (x == "") {
-              alert("Name must be filled out");
+              alert("Form must be filled out");
             return false;
             }
           }
@@ -130,7 +129,7 @@
             and brand you own.</p>
         <!-- checkbox form -->
         <form action="https://www.w3schools.com/action_page.php" method = "POST"
-        name="check">
+        name="check" onsubmit="validateForm()">
             <input type="checkbox" id="car1" name="car" value="Ford">
             <label for="car1"> I own a Ford</label><br>
             <input type="checkbox" id="car2" name="car" value="Chevy">
@@ -143,13 +142,14 @@
             <label for="car5"> I own Tesla </label><br>
             <input type = "submit" value = "Submit">
           </form> 
-          <h3 id="confirm"></h3>
           <script>
             function validateForm() {
-            let x = document.forms["check"]["car"].value;
-              if (x == "") {
-                alert("Name must be filled out");
-              return false;
+            let x = document.forms["check"]["car1"].checked || document.forms["check"]["car2"].checked ||
+            document.forms["check"]["car3"].checked || document.forms["check"]["car4"].checked
+            ||document.forms["check"]["car5"].checked;
+              if (x == true) {}
+              else{
+                alert("Checkbox must be filled out");
               }
             }
           </script>
