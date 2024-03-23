@@ -14,7 +14,7 @@
           }
       </style>
     </head>
-
+    <body onload="startTime()">
     <!--Header with logo and text-->
     <div class="container">
       <div class="header">
@@ -41,6 +41,36 @@
         padding:15px;text-align:center;">
         <h2><b>Tables Page</b></h2>
       </div>
+      <div style="background-color:#ffffff;
+          padding:15px;text-align:center;">
+           <div id="txt"></div>
+
+           <script>
+           function startTime() {
+             const today = new Date();
+             let h = today.getHours();
+             let m = today.getMinutes();
+             let s = today.getSeconds();
+             let session = "AM";
+             m = checkTime(m);
+             s = checkTime(s);
+             if (h==0){
+              h=12;
+             }
+             if (h > 12){
+              h=h-12;
+              session = "PM";
+             }
+             document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s + " " + session;
+             setTimeout(startTime, 1000);
+           }
+           
+           function checkTime(i) {
+             if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+             return i;
+           }
+           </script>
+         </div>
         
       <!--Navigation bar-->
       <div class="topnav">
@@ -50,6 +80,7 @@
           <a class = "active" href="SecondPage.html">Second Page</a> 
           <a href="ThirdPage.html">Third Page</a> 
           <a href="FourthPage.html">Fourth Page</a> 
+          <a href="FifthPage.html">Fifth Page</a> 
         </nav>
       </div>
 
@@ -143,7 +174,20 @@
       </table>
       <br>
       <br>
-      
+    <script> 
+      var myWindow;
+      function openWin() {
+        myWindow = window.open("", "", "width=400, height=200");
+      }
+
+      function closeWin() {
+      myWindow.close();
+      }
+      </script>
+
+      <input type="button" value="Open 'myWindow'" onclick="openWin()" />
+      <input type="button" value="Close 'myWindow'" onclick="closeWin()" />
+      <br>
       <div class="footer">
         <footer>
           <p>Author: Noah Kuskye</p>
