@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="styles.css">
         <meta charset="UTF-8">
     </head>
-    <body>   
+    <body onload="startTime()">   
         <!--Header of Logo and text-->
         <div class="container">
             <div class="header">
@@ -35,6 +35,36 @@
           padding:15px;text-align:center;">
            <h1><b>Images Page</b></h1>
        </div>
+       <div style="background-color:#ffffff;
+          padding:15px;text-align:center;">
+           <div id="txt"></div>
+
+           <script>
+           function startTime() {
+             const today = new Date();
+             let h = today.getHours();
+             let m = today.getMinutes();
+             let s = today.getSeconds();
+             let session = "AM";
+             m = checkTime(m);
+             s = checkTime(s);
+             if (h==0){
+              h=12;
+             }
+             if (h > 12){
+              h=h-12;
+              session = "PM";
+             }
+             document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s + " " + session;
+             setTimeout(startTime, 1000);
+           }
+           
+           function checkTime(i) {
+             if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+             return i;
+           }
+           </script>
+         </div>
        <!--Navigation Bar-->
         <div class="topnav">
             <nav>
@@ -45,6 +75,7 @@
                     <a class = "active" 
                        href="ThirdPage.html">Third Page</a> 
                     <a href="FourthPage.html">Fourth Page</a> 
+                    <a href="FifthPage.html">Fifth Page</a> 
                 </nav>
             </nav>
         </div>
@@ -83,7 +114,7 @@
 
         <div class="image-column">
             <img alt="Old American 4-4-0 steam loco"
-            src="Old_locomotive.jpg" 
+            src="Old locomotive.jpg" 
             style="background-color: rgb(255, 255, 255); 
             border: 5px solid #593c06;
             height: 75%; width: 75%; float: left;">
