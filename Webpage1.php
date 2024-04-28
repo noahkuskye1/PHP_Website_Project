@@ -47,44 +47,56 @@
           </div>
           <div style="background-color:#ffffff;
           padding:15px;text-align:center;">
-           <div id="clock"></div>
+           <div id="clock">&nbsp;</div>
+           <?php
+                date_default_timezone_set('UTC');
+            ?>
+          <script>
+            var d = new Date(<?php echo time() * 1000 ?>);
 
-           <script>
-           function startTime() {
-             const today = new Date();
-             let h = today.getHours();
-             let m = today.getMinutes();
-             let s = today.getSeconds();
-             let session = "AM";
-             m = checkTime(m);
-             s = checkTime(s);
-             if (h==0){
-              h=12;
-             }
-             if (h > 12){
-              h=h-12;
-              session = "PM";
-             }
-             document.getElementById('clock').innerHTML =  h + ":" + m + ":" + s + " " + session;
-             setTimeout(startTime, 1000);
-           }
-           
-           function checkTime(i) {
-             if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-             return i;
-           }
-           </script>
+            function updateClock() {
+              // Increment the date
+              d.setTime(d.getTime() + 1000);
+
+              // Translate time to pieces
+              var currentHours = d.getHours();
+              var currentMinutes = d.getMinutes();
+              var currentSeconds = d.getSeconds();
+
+              // Add the beginning zero to minutes and seconds if needed
+              currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+              currentSeconds = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+
+              // Determine the meridian
+              var meridian = (currentHours < 12) ? "am" : "pm";
+
+              // Convert the hours out of 24-hour time
+              currentHours = (currentHours > 12) ? currentHours - 12 : currentHours;
+              currentHours = (currentHours == 0) ? 12 : currentHours;
+
+              // Generate the display string
+              var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + meridian;
+
+              // Update the time
+              document.getElementById("clock").firstChild.nodeValue = currentTimeString;
+              }
+
+              window.onload = function() {
+              updateClock();
+              setInterval('updateClock()', 1000);
+              }
+          </script>
          </div>
           <!--Navigation Bar-->
           <div class="topnav">
             <nav>
               <a class = "active" 
-                 href="Webpage1.html">Home page</a>
-              <a href="FirstPage.html">First Page</a> 
-              <a href="SecondPage.html">Second Page</a> 
-              <a href="ThirdPage.html">Third Page</a> 
-              <a href="FourthPage.html">Fourth Page</a> 
-              <a href="FifthPage.html">Fifth Page</a> 
+                 href="Webpage1.php">Home page</a>
+              <a href="FirstPage.php">First Page</a> 
+              <a href="SecondPage.php">Second Page</a> 
+              <a href="ThirdPage.php">Third Page</a> 
+              <a href="FourthPage.php">Fourth Page</a> 
+              <a href="FifthPage.php">Fifth Page</a> 
             </nav>
           </div>
           
@@ -111,7 +123,7 @@
           <p id="p2">It's the Author!</p>
           <!--Article element-->
           <article>
-            <h2>Welcome!</h2>
+          <h2>Welcome, <?php if(!empty($username)){ echo $username; }?> to the dashboard</h2>
             <p>My name is Noah Kuskye and this is 
             my webpage. Hope you enjoy the experience.</p> 
             <br>  
@@ -165,6 +177,23 @@
           </script>
           <br>
 
+          <?php 
+          echo(pi());
+          echo(min(0, 150, 30, 20, -8, -200) . "<br>");
+          echo(max(0, 150, 30, 20, -8, -200));
+          ?>
+          <br>
+          <?php 
+          echo(min(0, 150, 30, 20, -8, -200) . "<br>");
+          ?>
+          <br>
+          <?php 
+          echo(max(0, 150, 30, 20, -8, -200));
+          ?>
+          <br>
+          <?php
+          echo("<a href=logout.php>logout</a>");
+          ?>
           <div class="footer">
             <footer>
               <p>Author: Noah Kuskye</p>
@@ -174,3 +203,4 @@
             </footer>
           </div>
     </body>
+    </html>
