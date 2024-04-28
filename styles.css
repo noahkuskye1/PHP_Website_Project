@@ -157,5 +157,8 @@ body {
   
   label {
     color: #666;
-    font-s
+  }
+
+  font{
+    font-size: 40px;
   }
