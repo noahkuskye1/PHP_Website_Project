@@ -1,4 +1,4 @@
-<!-- 
+<!--
   Project Title: HTML Website
   Course: CSC340
   School: Bethel University
@@ -7,6 +7,16 @@
   
   Description: The First Page that the user interacts with
 -->
+<?php
+if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])){
+  $user= $_COOKIE["username"];
+  $password= $_COOKIE["password"];
+  echo"<script>
+  getElementById('username').value = '$user';
+  getElementById('pass').value = '$password';
+  </script>";
+}
+?>
 <!DOCTYPE html>
     <html lang="en">
    <!-- title of page -->
@@ -19,8 +29,7 @@
       <link rel="stylesheet" href="styles.css">
       <meta charset="UTF-8">
     </head>
-    <body>   
-        <div class="container">
+    <div class="container">
           <div class="header">
             <div class="image-center">
             <img alt="Yellow Husky"
@@ -40,14 +49,22 @@
             </div>
           </div>
         </div> 
-        <form action="Webpage1.html" name="user">
+    <body>   
+    <form action = "authentication.php" name="user" method="post">
+          <div class = "input-a"></div>
           <label for="username">Username</label>
-          <input type="text" id="username" required>
+          <input type="text" name="username" value="<?php echo "$user"; ?>"
+		   required>
+          <br>
           <label for="password">Password</label>
-          <input type="password" id="password" required>
-          <input type="checkbox" value="lsRememberMe" id="rememberMe"> <label for="rememberMe">Remember me</label>
-          <input type="submit" value="Login" onclick="setCookie()">
+          <input type="password" name="pass" value="<?php echo "$password"?>"
+		  required>
+          <br>
+          <input type="checkbox" value="lsRememberMe" id="rememberMe" name="remember"> <label for="rememberMe">Remember me</label>
+          <input type="submit" value="login" name="login">
         </form>
+
+</form>
         <script src="UsernameFunction.js">
           function validateForm() {
           let x = document.forms["user"]["username"]["password"].value;
