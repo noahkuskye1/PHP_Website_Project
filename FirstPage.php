@@ -38,44 +38,57 @@
           </div>
           <div style="background-color:#ffffff;
           padding:15px;text-align:center;">
-           <div id="txt"></div>
+           <div id="clock">&nbsp;</div>
+           <?php
+                date_default_timezone_set('UTC');
+            ?>
+          <script>
+            var d = new Date(<?php echo time() * 1000 ?>);
 
-           <script>
-           function startTime() {
-             const today = new Date();
-             let h = today.getHours();
-             let m = today.getMinutes();
-             let s = today.getSeconds();
-             let session = "AM";
-             m = checkTime(m);
-             s = checkTime(s);
-             if (h==0){
-              h=12;
-             }
-             if (h > 12){
-              h=h-12;
-              session = "PM";
-             }
-             document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s + " " + session;
-             setTimeout(startTime, 1000);
-           }
-           
-           function checkTime(i) {
-             if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-             return i;
-           }
-           </script>
+            function updateClock() {
+              // Increment the date
+              d.setTime(d.getTime() + 1000);
+
+              // Translate time to pieces
+              var currentHours = d.getHours();
+              var currentMinutes = d.getMinutes();
+              var currentSeconds = d.getSeconds();
+
+              // Add the beginning zero to minutes and seconds if needed
+              currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+              currentSeconds = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+
+              // Determine the meridian
+              var meridian = (currentHours < 12) ? "am" : "pm";
+
+              // Convert the hours out of 24-hour time
+              currentHours = (currentHours > 12) ? currentHours - 12 : currentHours;
+              currentHours = (currentHours == 0) ? 12 : currentHours;
+
+              // Generate the display string
+              var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + meridian;
+
+              // Update the time
+              document.getElementById("clock").firstChild.nodeValue = currentTimeString;
+              }
+
+              window.onload = function() {
+              updateClock();
+              setInterval('updateClock()', 1000);
+              }
+          </script>
+         </div>
          </div>
         <!-- navigation bar -->
         <div class="topnav">
             <nav>
-                <a href="Webpage1.html">Home page</a>
+                <a href="Webpage1.php">Home page</a>
                 <a class="active" 
-                   href="FirstPage.html">First Page</a> 
-                <a href="SecondPage.html">Second Page</a> 
-                <a href="ThirdPage.html">Third Page</a> 
-                <a href="FourthPage.html">Fourth Page</a> 
-                <a href="FifthPage.html">Fifth Page</a> 
+                   href="FirstPage.php">First Page</a> 
+                <a href="SecondPage.php">Second Page</a> 
+                <a href="ThirdPage.php">Third Page</a> 
+                <a href="FourthPage.php">Fourth Page</a> 
+                <a href="FifthPage.php">Fifth Page</a> 
             </nav>
           </div>
         <div class="column">
@@ -101,7 +114,7 @@
             vehicle brand you own.</p>
         <!-- text form -->
         <div class="input-a">
-        <form action="https://www.w3schools.com/action_page.php" 
+        <form action="boxformresult.php" 
             method = "POST" name="myForm">
             <label for="sport">Favorite sport:</label><br>
             <input type="text" id="sport" name="sport" required><br>
@@ -128,17 +141,17 @@
         <p> This is a <em>checkbox form</em> that checks which vehicle 
             and brand you own.</p>
         <!-- checkbox form -->
-        <form action="https://www.w3schools.com/action_page.php" method = "POST"
+        <form action="form2result.php" method = "POST"
         name="check" onsubmit="validateForm()">
-            <input type="checkbox" id="car1" name="car" value="Ford">
+            <input type="checkbox" id="car1" name="car[]" value="Ford">
             <label for="car1"> I own a Ford</label><br>
-            <input type="checkbox" id="car2" name="car" value="Chevy">
+            <input type="checkbox" id="car2" name="car[]" value="Chevy">
             <label for="car2"> I own a Chevy</label><br>
-            <input type="checkbox" id="car3" name="car" value="Toyota">
+            <input type="checkbox" id="car3" name="car[]" value="Toyota">
             <label for="car3"> I own a Toyota</label><br>
-            <input type="checkbox" id="car4" name="car" value="Honda">
+            <input type="checkbox" id="car4" name="car[]" value="Honda">
             <label for="car4"> I own a Honda</label><br>
-            <input type="checkbox" id="car5" name="car" value="Tesla">
+            <input type="checkbox" id="car5" name="car[]" value="Tesla">
             <label for="car5"> I own Tesla </label><br>
             <input type = "submit" value = "Submit">
           </form> 
@@ -165,6 +178,7 @@
               </p>
           </footer>
         </div>
+        
 
     </body>
    
