@@ -43,44 +43,56 @@
       </div>
       <div style="background-color:#ffffff;
           padding:15px;text-align:center;">
-           <div id="txt"></div>
+           <div id="clock">&nbsp;</div>
+           <?php
+                date_default_timezone_set('UTC');
+            ?>
+          <script>
+            var d = new Date(<?php echo time() * 1000 ?>);
 
-           <script>
-           function startTime() {
-             const today = new Date();
-             let h = today.getHours();
-             let m = today.getMinutes();
-             let s = today.getSeconds();
-             let session = "AM";
-             m = checkTime(m);
-             s = checkTime(s);
-             if (h==0){
-              h=12;
-             }
-             if (h > 12){
-              h=h-12;
-              session = "PM";
-             }
-             document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s + " " + session;
-             setTimeout(startTime, 1000);
-           }
-           
-           function checkTime(i) {
-             if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-             return i;
-           }
-           </script>
+            function updateClock() {
+              // Increment the date
+              d.setTime(d.getTime() + 1000);
+
+              // Translate time to pieces
+              var currentHours = d.getHours();
+              var currentMinutes = d.getMinutes();
+              var currentSeconds = d.getSeconds();
+
+              // Add the beginning zero to minutes and seconds if needed
+              currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+              currentSeconds = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+
+              // Determine the meridian
+              var meridian = (currentHours < 12) ? "am" : "pm";
+
+              // Convert the hours out of 24-hour time
+              currentHours = (currentHours > 12) ? currentHours - 12 : currentHours;
+              currentHours = (currentHours == 0) ? 12 : currentHours;
+
+              // Generate the display string
+              var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + meridian;
+
+              // Update the time
+              document.getElementById("clock").firstChild.nodeValue = currentTimeString;
+              }
+
+              window.onload = function() {
+              updateClock();
+              setInterval('updateClock()', 1000);
+              }
+          </script>
          </div>
         
       <!--Navigation bar-->
       <div class="topnav">
         <nav>
-          <a href="Webpage1.html">Home page</a>
-          <a href="FirstPage.html">First Page</a> 
-          <a class = "active" href="SecondPage.html">Second Page</a> 
-          <a href="ThirdPage.html">Third Page</a> 
-          <a href="FourthPage.html">Fourth Page</a> 
-          <a href="FifthPage.html">Fifth Page</a> 
+          <a href="Webpage1.php">Home page</a>
+          <a href="FirstPage.php">First Page</a> 
+          <a class = "active" href="SecondPage.php">Second Page</a> 
+          <a href="ThirdPage.php">Third Page</a> 
+          <a href="FourthPage.php">Fourth Page</a> 
+          <a href="FifthPage.php">Fifth Page</a> 
         </nav>
       </div>
 
@@ -196,5 +208,5 @@
             </p>
         </footer>
       </div>
-    </body>   
+    </body> 
   </html>
